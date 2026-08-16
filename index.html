@@ -6,23 +6,23 @@
   <title>Mac DeMarco - Live Special Edition</title>
   <style>
     :root {
-      /* Sfondo scuro semi-trasparente per i riquadri */
-      --card-bg: rgba(30, 30, 30, 0.65); 
+      /* Sfondo scuro MOLTO più trasparente per i riquadri (0.3 invece di 0.65) */
+      --card-bg: rgba(30, 30, 30, 0.3); 
       --accent: #e52b2b;
       --text: #ffffff;
-      --subtext: #dddddd; /* Reso leggermente più chiaro per contrastare lo sfondo */
+      --subtext: #dddddd; 
       --vinyl-center: #2b5be5;
     }
 
     body {
       margin: 0;
       padding: 20px 15px;
-      /* --- INSERISCI QUI IL LINK DELLA TUA FOTO --- */
-      background-image: url('https://bryanbarbieri09-dev.github.io/MacDeMarco-Live/MacDeMarco.jpg');
+      /* --- INSERISCI QUI IL NOME O IL LINK DELLA TUA FOTO --- */
+      background-image: url('MacDeMarco.jpg');
       background-size: cover;
       background-position: center;
-      background-attachment: fixed; /* Mantiene la foto ferma mentre scorri la pagina */
-      background-color: #121212; /* Colore di sicurezza se la foto non carica */
+      background-attachment: fixed; 
+      background-color: #121212; 
       
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -36,12 +36,12 @@
       width: 100%;
     }
 
-    /* Player / Turntable Style con effetto VETRO */
+    /* Player / Turntable Style con effetto VETRO EXTRA TRASPARENTE */
     .turntable {
       background: var(--card-bg);
-      backdrop-filter: blur(10px); /* Sfoca leggermente l'immagine dietro */
-      -webkit-backdrop-filter: blur(10px); /* Per Safari */
-      border: 1px solid rgba(255, 255, 255, 0.1); /* Bordino leggero per staccarlo dallo sfondo */
+      backdrop-filter: blur(6px); /* Sfocatura ridotta per vedere meglio la foto */
+      -webkit-backdrop-filter: blur(6px); 
+      border: 1px solid rgba(255, 255, 255, 0.15); 
       border-radius: 24px;
       padding: 25px 20px;
       text-align: center;
@@ -110,7 +110,7 @@
       font-weight: bold;
       letter-spacing: 2px;
       margin-bottom: 4px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Aiuta a leggere meglio sullo sfondo */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Aumentata l'ombra per leggere meglio sul trasparente */
     }
 
     .track-title {
@@ -120,7 +120,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     /* Progress & Time */
@@ -130,7 +130,8 @@
       gap: 10px;
       margin-bottom: 15px;
       font-size: 12px;
-      color: var(--subtext);
+      color: var(--text);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
     .progress-bar {
@@ -138,7 +139,7 @@
       -webkit-appearance: none;
       height: 6px;
       border-radius: 3px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
       outline: none;
     }
 
@@ -169,7 +170,7 @@
       cursor: pointer;
       padding: 10px;
       transition: transform 0.1s;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     .btn:active { transform: scale(0.9); }
@@ -185,6 +186,7 @@
       justify-content: center;
       font-size: 22px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+      text-shadow: none;
     }
 
     .volume-container {
@@ -193,7 +195,8 @@
       justify-content: center;
       gap: 10px;
       font-size: 12px;
-      color: var(--subtext);
+      color: var(--text);
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
     .volume-slider {
@@ -201,7 +204,7 @@
       -webkit-appearance: none;
       height: 4px;
       border-radius: 2px;
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
     }
 
     .volume-slider::-webkit-slider-thumb {
@@ -215,9 +218,9 @@
     /* Tracklist con effetto VETRO */
     .tracklist {
       background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 20px;
       padding: 20px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.5);
@@ -227,10 +230,10 @@
       color: var(--accent);
       font-size: 14px;
       letter-spacing: 1.5px;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.2);
       padding-bottom: 5px;
       margin: 15px 0 10px;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     }
 
     .side-header:first-child { margin-top: 0; }
@@ -244,10 +247,11 @@
       cursor: pointer;
       font-size: 14px;
       transition: background 0.2s;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
     .track-item:hover, .track-item.active {
-      background: rgba(255, 255, 255, 0.15); /* Trasparenza all'hover */
+      background: rgba(255, 255, 255, 0.2); 
     }
 
     .track-item.active .t-name {
@@ -256,27 +260,27 @@
     }
 
     .download-btn {
-      color: var(--subtext);
+      color: var(--text);
       text-decoration: none;
       font-size: 12px;
       padding: 4px 8px;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.4);
       border-radius: 4px;
       transition: all 0.2s;
+      text-shadow: none;
     }
     
     .download-btn:hover {
-      background: rgba(255,255,255,0.1);
-      color: #fff;
+      background: rgba(255,255,255,0.2);
     }
 
     .zip-download {
       display: block;
       width: 100%;
       text-align: center;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.3);
       color: var(--text);
       text-decoration: none;
       padding: 12px;
@@ -285,10 +289,11 @@
       font-weight: 500;
       box-sizing: border-box;
       transition: background 0.2s;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
     }
 
     .zip-download:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.3);
     }
   </style>
 </head>
