@@ -299,51 +299,43 @@
 <audio id="audio"></audio>
 
 <script>
-  // Link base dinamico per i tuoi file su GitHub
-  const baseUrl = "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/";
-
   const playlist = [
     // SIDE A
-    { side: "SIDE A", track: "01", title: "Intro", url: baseUrl + "01+-+Intro.mp3" },
-    { side: "SIDE A", track: "02", title: "Shining", url: baseUrl + "02+-+Shining.mp3" },
-    { side: "SIDE A", track: "03", title: "For The First Time", url: baseUrl + "03+-+For+The+First+Time.mp3" },
-    { side: "SIDE A", track: "04", title: "Sweeter", url: baseUrl + "04+-+Sweeter.mp3" },
-    { side: "SIDE A", track: "05", title: "On The Level", url: baseUrl + "05+-+On+The+Level.mp3" },
-    { side: "SIDE A", track: "06", title: "Phantom", url: baseUrl + "06+-+Phantom.mp3" },
-    { side: "SIDE A", track: "07", title: "Salad Days", url: baseUrl + "07+-+Salad+Days.mp3" },
-    { side: "SIDE A", track: "08", title: "I Like Her", url: baseUrl + "08+-+I+Like+Her.mp3" },
-    { side: "SIDE A", track: "09", title: "Rock And Roll", url: baseUrl + "09+-+Rock+And+Roll.mp3" },
-    { side: "SIDE A", track: "10", title: "Terror", url: baseUrl + "10+-+Terror.mp3" },
-    { side: "SIDE A", track: "11", title: "Finally Alone", url: baseUrl + "11+-+Finally+Alone.mp3" },
-    { side: "SIDE A", track: "12", title: "All Of Our Yesterdays", url: baseUrl + "12+-+All+Of+Our+Yesterdays.mp3" },
-    { side: "SIDE A", track: "13", title: "Still Beating", url: baseUrl + "13+-+Still+Beating.mp3" },
-    { side: "SIDE A", track: "14", title: "Passing Out Pieces", url: baseUrl + "14+-+Passing+Out+Pieces.mp3" },
-    { side: "SIDE A", track: "15", title: "Home", url: baseUrl + "15+-+Home.mp3" },
-    { side: "SIDE A", track: "16", title: "No Other Heart", url: baseUrl + "16+-+No+Other+Heart.mp3" },
+    { side: "SIDE A", track: "01", title: "Intro", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/6bbf4a7a1024636b54bb9eb3438d2ffcc1fc718b92ca59148c6f5661ce74ed42" },
+    { side: "SIDE A", track: "02", title: "Shining", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/bef0785c6bd5c890628d97ac6d256f0607fb12c18f30115be4df57c37590020d" },
+    { side: "SIDE A", track: "03", title: "For The First Time", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/408f6525727ff412136ac3fb4bca341b0c859c5f45e3dba9abf897e9d46aa1b0" },
+    { side: "SIDE A", track: "04", title: "Sweeter", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/5b973081b6eeda4731fa7d6a485279973d619d10905f97c2525447db75d9e907" },
+    { side: "SIDE A", track: "05", title: "On The Level", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/d335807767d5666daeb1cc61aa8b652b115e262190b50784fbb973ed429a37d9" },
+    { side: "SIDE A", track: "06", title: "Phantom", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/ec767090becfe0406687ff9141ead77c091de9aeb5de65e4c83f0bf3cdec412b" },
+    { side: "SIDE A", track: "07", title: "Salad Days", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/c5d0df23f7d1475e0fdef6b1c982d087d0b657cde3d234e7155c7376a5065e6a" },
+    { side: "SIDE A", track: "08", title: "I Like Her", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/89c43efa3118c63cc92f8e334d6fc9e41d15a3b5594b8f3d981e5d2d5181c988" },
+    { side: "SIDE A", track: "09", title: "Rock And Roll", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/e397b8ee3532b7c11dcbf793d48a0a78e7f90474f822ec3d6c24891d63480d06" },
+    { side: "SIDE A", track: "10", title: "Terror", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/599e840ece7571621a7c00f9677caa419553c8081d4f3683bf0c2de90a6e57e0" },
+    { side: "SIDE A", track: "11", title: "Finally Alone", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/210cf3dadc574290acb36657295cf443d8afcd9c2fffdde06fa710e844690b70" },
+    { side: "SIDE A", track: "12", title: "All Of Our Yesterdays", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/1b58a756f68472d6e1b511fdfd1256bb165775d915020781b1f675ec996ca4f9" },
+    { side: "SIDE A", track: "13", title: "Still Beating", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/1b6a0de8a4b19ccfbc615b5d6e9e9803445167192d2da6063b0467c0600a565a" },
+    { side: "SIDE A", track: "14", title: "Passing Out Pieces", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/26f0997069cc65387fee380271a5d9c4582380bb925a7dbc503c74b90aa8f0f4" },
+    { side: "SIDE A", track: "15", title: "Home", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/040271c120d6be5f382f379420f5f692ca1b38f1e90dc27746c35dc7892d2deb" },
+    { side: "SIDE A", track: "16", title: "No Other Heart", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/59d528a260b5495b59d8b2668d3781342e8d523694ccf8616771c802e5e76242" },
 
     // SIDE B
-    { side: "SIDE B", track: "17", title: "20210218 Round Here", url: baseUrl + "17+-+20210218+Round+Here.mp3" },
-    { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", url: baseUrl + "18+-+Rock+And+Roll+Night+Club.mp3" },
-    { side: "SIDE B", track: "19", title: "Heart To Heart", url: baseUrl + "19+-+Heart+To+Heart.mp3" },
-    { side: "SIDE B", track: "20", title: "This Old Dog", url: baseUrl + "20+-+This+Old+Dog.mp3" },
-    { side: "SIDE B", track: "21", title: "Ode to Viceroy", url: baseUrl + "21+-+Ode+to+Viceroy.mp3" },
-    { side: "SIDE B", track: "22", title: "20200820 Turn My TV On", url: baseUrl + "22+-+20200820+Turn+My+TV+On.mp3" },
-    { side: "SIDE B", track: "23", title: "One More Love Song", url: baseUrl + "23+-+One+More+Love+Song.mp3" },
-    { side: "SIDE B", track: "24", title: "Another One", url: baseUrl + "24+-+Another+One.mp3" },
-    { side: "SIDE B", track: "25", title: "Rooster", url: baseUrl + "25+-+Rooster.mp3" },
-    { side: "SIDE B", track: "26", title: "Freaking Out The Neighborhood", url: baseUrl + "26+-+Freaking+Out+The+Neighborhood.mp3" },
-    { side: "SIDE B", track: "27", title: "Holy", url: baseUrl + "27+-+Holy.mp3" },
-    { side: "SIDE B", track: "28", title: "Moonlight on the River", url: baseUrl + "28+-+Moonlight+on+the+River.mp3" },
-    { side: "SIDE B", track: "29", title: "Chamber of Reflection", url: baseUrl + "29+-+Chamber+of+Reflection.mp3" },
-    { side: "SIDE B", track: "30", title: "My Kind Of Woman", url: baseUrl + "30+-+My+Kind+Of+Woman.mp3" },
-    { side: "SIDE B", track: "31", title: "Bonus Track - No Other Heart", url: baseUrl + "31+-+Bonus+Track+-+No+Other+Heart.mp3" },
-    { side: "SIDE B", track: "32", title: "Bonus Track - For the First Time", url: baseUrl + "32+-+Bonus+Track+-+For+the+First+Time.mp3" }
+    { side: "SIDE B", track: "17", title: "20210218 Round Here", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/b4273a91e29b3bbc2c24f01957008757338eda68bf05314410cacc9425eaf0cc" },
+    { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/e1ae0f0ca469fc4c2d2af5899018522cf1f2b83395fde43f18cc3145b6bfd760" },
+    { side: "SIDE B", track: "19", title: "Heart To Heart", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/3c7113259d8dee76c2db20e814ba5f04463126dd353b07617558f6629936269e" },
+    { side: "SIDE B", track: "20", title: "This Old Dog", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/62dbb6c40778db3c1fb4b1ada509b6902c2a2d436c43635b3f2295cd60bc7957" },
+    { side: "SIDE B", track: "21", title: "Ode to Viceroy", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/4e189bd999ce52534657c1b81292bf9ff35c15442167d8d610eb1d47ff74b792" },
+    { side: "SIDE B", track: "22", title: "20200820 Turn My TV On", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/0853a3ad25c96fa723d47040107673e42b338d306c32475bb53b91a656080b18" },
+    { side: "SIDE B", track: "23", title: "One More Love Song", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/08ffa263ed42cbfc6e2b3a77f6c0db2f0f1c05870f976a6be5fa875270d9a31c" },
+    { side: "SIDE B", track: "24", title: "Another One", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/f8e333cdcd4a3a9f8697b2c24b9a1eea26025079e5dbfe56fa81c9bc06a9b420" },
+    { side: "SIDE B", track: "25", title: "Rooster", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/47ad47f43b648ff9cbf52ebcdaf270ad15b3ac84bfe8970b738b5dfa0692fcf1" },
+    { side: "SIDE B", track: "26", title: "Freaking Out The Neighborhood", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/8b2b5cd2e1a909e0b1d019c77c79e90d4fbc0cdf8cdd1fc990f722b4d3d42886" },
+    { side: "SIDE B", track: "27", title: "Holy", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/803e84acca71eef2014fb23e0861700f7cdce3408ec89dcac9b09e083c98f191" },
+    { side: "SIDE B", track: "28", title: "Moonlight on the River", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/af7ceace4e7cb19b57a7436c05508c33a0ea2170183a84fd1466234030ebda78" },
+    { side: "SIDE B", track: "29", title: "Chamber of Reflection", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/f1de759e9f8acb9b2d1a2eb4bfc5222143a42ef9e13ca034f1ee2d7454c847b5" },
+    { side: "SIDE B", track: "30", title: "My Kind Of Woman", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/8d224153eb29fefd2ed018838ad101b154a8f5aedffbd7ed8aa31dd9f9481f09" },
+    { side: "SIDE B", track: "31", title: "Bonus Track - No Other Heart", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/6d7165493fde687324d6970d5189bc7ba1a8458ffcffbc0afc3d0795121c435f" },
+    { side: "SIDE B", track: "32", title: "Bonus Track - For the First Time", url: "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/4d0b3c926466477817f7207ac9f7b94558383bc478319b85c7838d79a8c0465a" }
   ];
-
-  // Fix per gli URL con gli spazi
-  playlist.forEach(item => {
-    item.url = item.url.replace(/\+/g, "%20");
-  });
 
   let currentIndex = 0;
   const audio = document.getElementById("audio");
