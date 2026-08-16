@@ -7,21 +7,29 @@
   <style>
     :root {
       --bg-color: #121212;
-      --card-bg: #1e1e1e;
-      --accent: #e5a93c;
+      --card-bg: rgba(30, 30, 30, 0.85); /* Sfondo semitrasparente per far vedere l'immagine */
+      --accent: #e52b2b; /* Nuovo Rosso */
       --text: #ffffff;
       --subtext: #aaaaaa;
+      --vinyl-center: #2b5be5; /* Blu per il centro del vinile */
     }
 
     body {
       margin: 0;
       padding: 20px 15px;
       background-color: var(--bg-color);
+      /* Immagine di sfondo Mac DeMarco con overlay scuro */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('MacDeMarco.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
+      min-height: 100vh;
     }
 
     .container {
@@ -32,11 +40,14 @@
     /* Player / Turntable Style */
     .turntable {
       background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 24px;
       padding: 25px 20px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
       margin-bottom: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .record-container {
@@ -51,7 +62,7 @@
       height: 100%;
       border-radius: 50%;
       background: radial-gradient(circle, #333 18%, #111 18%, #111 24%, #222 25%, #111 60%, #000 100%);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -63,19 +74,27 @@
       animation-play-state: running;
     }
 
+    /* Etichetta centrale del vinile: Blu senza testo */
     .record-label {
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: var(--accent);
+      background: var(--vinyl-center);
       border: 3px solid #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      font-weight: bold;
-      font-size: 11px;
-      text-align: center;
+      position: relative;
+    }
+
+    /* Foro centrale del vinile */
+    .record-label::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      background: #000;
+      border-radius: 50%;
     }
 
     @keyframes spin {
@@ -157,7 +176,7 @@
       height: 55px;
       border-radius: 50%;
       background: var(--accent);
-      color: #000;
+      color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -192,8 +211,12 @@
     /* Tracklist */
     .tracklist {
       background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 20px;
       padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     }
 
     .side-header {
@@ -219,7 +242,7 @@
     }
 
     .track-item:hover, .track-item.active {
-      background: #2a2a2a;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .track-item.active .t-name {
@@ -232,15 +255,21 @@
       text-decoration: none;
       font-size: 12px;
       padding: 4px 8px;
-      border: 1px solid #444;
+      border: 1px solid #555;
       border-radius: 4px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .download-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
     }
 
     .zip-download {
       display: block;
       width: 100%;
       text-align: center;
-      background: #2a2a2a;
+      background: rgba(255, 255, 255, 0.1);
       color: var(--text);
       text-decoration: none;
       padding: 12px;
@@ -248,6 +277,13 @@
       margin-top: 20px;
       font-weight: 500;
       box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transition: background 0.2s;
+    }
+
+    .zip-download:hover {
+      background: rgba(229, 43, 43, 0.2);
+      border-color: var(--accent);
     }
   </style>
 </head>
@@ -257,7 +293,7 @@
   <div class="turntable">
     <div class="record-container">
       <div class="record" id="vinyl">
-        <div class="record-label">MAC LIVE</div>
+        <div class="record-label"></div>
       </div>
     </div>
 
@@ -299,7 +335,6 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-  // Utilizziamo jsDelivr per servire direttamente i file dal tuo repository GitHub
   const baseUrl = "https://cdn.jsdelivr.net/gh/bryanbarbieri09-dev/MacDeMarco-Live@main/";
 
   const playlist = [
