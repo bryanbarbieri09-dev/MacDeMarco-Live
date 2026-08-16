@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mac DeMarco - Live Special Edition</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --accent: #e5a93c;
+      --text: #ffffff;
+      --subtext: #aaaaaa;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px 15px;
+      background-color: var(--bg-color);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 420px;
+      width: 100%;
+    }
+
+    /* Player / Turntable Style */
+    .turntable {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 25px;
+    }
+
+    .record-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 20px;
+    }
+
+    .record {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: radial-gradient(circle, #333 18%, #111 18%, #111 24%, #222 25%, #111 60%, #000 100%);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 3s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .record.playing {
+      animation-play-state: running;
+    }
+
+    .record-label {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    .track-info {
+      margin-bottom: 15px;
+    }
+
+    .track-side {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+    }
+
+    .track-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 5px 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Progress & Time */
+    .progress-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+      font-size: 12px;
+      color: var(--subtext);
+    }
+
+    .progress-bar {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: #444;
+      outline: none;
+    }
+
+    .progress-bar::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+    }
+
+    /* Controls */
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 10px;
+      transition: transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.9); }
+
+    .btn-main {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    .volume-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 12px;
+      color: var(--subtext);
+    }
+
+    .volume-slider {
+      width: 100px;
+      -webkit-appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: #444;
+    }
+
+    .volume-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--text);
+    }
+
+    /* Tracklist */
+    .tracklist {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 20px;
+    }
+
+    .side-header {
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 5px;
+      margin: 15px 0 10px;
+    }
+
+    .side-header:first-child { margin-top: 0; }
+
+    .track-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+
+    .track-item:hover, .track-item.active {
+      background: #2a2a2a;
+    }
+
+    .track-item.active .t-name {
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .download-btn {
+      color: var(--subtext);
+      text-decoration: none;
+      font-size: 12px;
+      padding: 4px 8px;
+      border: 1px solid #444;
+      border-radius: 4px;
+    }
+
+    .zip-download {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: #2a2a2a;
+      color: var(--text);
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 12px;
+      margin-top: 20px;
+      font-weight: 500;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="turntable">
+    <div class="record-container">
+      <div class="record" id="vinyl">
+        <div class="record-label">MAC LIVE</div>
+      </div>
+    </div>
+
+    <div class="track-info">
+      <div class="track-side" id="display-side">SIDE A</div>
+      <div class="track-title" id="display-title">Seleziona una traccia</div>
+    </div>
+
+    <div class="progress-container">
+      <span id="current-time">0:00</span>
+      <input type="range" id="progress" class="progress-bar" value="0" min="0" step="0.1">
+      <span id="total-time">0:00</span>
+    </div>
+
+    <div class="controls">
+      <button class="btn" onclick="prevTrack()">⏮</button>
+      <button class="btn btn-main" id="play-btn" onclick="togglePlay()">▶</button>
+      <button class="btn" onclick="stopTrack()">⏹</button>
+      <button class="btn" onclick="nextTrack()">⏭</button>
+    </div>
+
+    <div class="volume-container">
+      <span id="mute-btn" style="cursor:pointer;" onclick="toggleMute()">🔊</span>
+      <input type="range" id="volume" class="volume-slider" min="0" max="1" step="0.05" value="1">
+    </div>
+  </div>
+
+  <div class="tracklist">
+    <div class="side-header">SIDE A</div>
+    <div id="side-a-tracks"></div>
+
+    <div class="side-header">SIDE B</div>
+    <div id="side-b-tracks"></div>
+
+    <a href="https://drive.google.com/drive/folders/1keV0mdtPuHWr4lfId9uJqmzdjN7uXX_3?usp=sharing" target="_blank" class="zip-download">📦 Scarica Album Completo su Google Drive</a>
+  </div>
+</div>
+
+<audio id="audio"></audio>
+
+<script>
+  const playlist = [
+    // SIDE A
+    { side: "SIDE A", track: "01", title: "Intro", url: "sha256:6bbf4a7a1024636b54bb9eb3438d2ffcc1fc718b92ca59148c6f5661ce74ed42" },
+    { side: "SIDE A", track: "02", title: "Shining", url: "sha256:bef0785c6bd5c890628d97ac6d256f0607fb12c18f30115be4df57c37590020d" },
+    { side: "SIDE A", track: "03", title: "For The First Time", url: "sha256:408f6525727ff412136ac3fb4bca341b0c859c5f45e3dba9abf897e9d46aa1b0" },
+    { side: "SIDE A", track: "04", title: "Sweeter", url: "sha256:5b973081b6eeda4731fa7d6a485279973d619d10905f97c2525447db75d9e907" },
+    { side: "SIDE A", track: "05", title: "On The Level", url: "sha256:d335807767d5666daeb1cc61aa8b652b115e262190b50784fbb973ed429a37d9" },
+    { side: "SIDE A", track: "06", title: "Phantom", url: "sha256:ec767090becfe0406687ff9141ead77c091de9aeb5de65e4c83f0bf3cdec412b" },
+    { side: "SIDE A", track: "07", title: "Salad Days", url: "sha256:c5d0df23f7d1475e0fdef6b1c982d087d0b657cde3d234e7155c7376a5065e6a" },
+    { side: "SIDE A", track: "08", title: "I Like Her", url: "sha256:89c43efa3118c63cc92f8e334d6fc9e41d15a3b5594b8f3d981e5d2d5181c988" },
+    { side: "SIDE A", track: "09", title: "Rock And Roll", url: "sha256:e397b8ee3532b7c11dcbf793d48a0a78e7f90474f822ec3d6c24891d63480d06" },
+    { side: "SIDE A", track: "10", title: "Terror", url: "sha256:599e840ece7571621a7c00f9677caa419553c8081d4f3683bf0c2de90a6e57e0" },
+    { side: "SIDE A", track: "11", title: "Finally Alone", url: "sha256:210cf3dadc574290acb36657295cf443d8afcd9c2fffdde06fa710e844690b70" },
+    { side: "SIDE A", track: "12", title: "All Of Our Yesterdays", url: "sha256:1b58a756f68472d6e1b511fdfd1256bb165775d915020781b1f675ec996ca4f9" },
+    { side: "SIDE A", track: "13", title: "Still Beating", url: "sha256:1b6a0de8a4b19ccfbc615b5d6e9e9803445167192d2da6063b0467c0600a565a" },
+    { side: "SIDE A", track: "14", title: "Passing Out Pieces", url: "sha256:26f0997069cc65387fee380271a5d9c4582380bb925a7dbc503c74b90aa8f0f4" },
+    { side: "SIDE A", track: "15", title: "Home", url: "sha256:040271c120d6be5f382f379420f5f692ca1b38f1e90dc27746c35dc7892d2deb" },
+    { side: "SIDE A", track: "16", title: "No Other Heart", url: "sha256:59d528a260b5495b59d8b2668d3781342e8d523694ccf8616771c802e5e76242" },
+
+    // SIDE B
+    { side: "SIDE B", track: "17", title: "20210218 Round Here", url: "sha256:b4273a91e29b3bbc2c24f01957008757338eda68bf05314410cacc9425eaf0cc" },
+    { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", url: "sha256:e1ae0f0ca469fc4c2d2af5899018522cf1f2b83395fde43f18cc3145b6bfd760" },
+    { side: "SIDE B", track: "19", title: "Heart To Heart", url: "sha256:3c7113259d8dee76c2db20e814ba5f04463126dd353b07617558f6629936269e" },
+    { side: "SIDE B", track: "20", title: "This Old Dog", url: "sha256:62dbb6c40778db3c1fb4b1ada509b6902c2a2d436c43635b3f2295cd60bc7957" },
+    { side: "SIDE B", track: "21", title: "Ode to Viceroy", url: "sha256:4e189bd999ce52534657c1b81292bf9ff35c15442167d8d610eb1d47ff74b792" },
+    { side: "SIDE B", track: "22", title: "20200820 Turn My TV On", url: "sha256:0853a3ad25c96fa723d47040107673e42b338d306c32475bb53b91a656080b18" },
+    { side: "SIDE B", track: "23", title: "One More Love Song", url: "sha256:08ffa263ed42cbfc6e2b3a77f6c0db2f0f1c05870f976a6be5fa875270d9a31c" },
+    { side: "SIDE B", track: "24", title: "Another One", url: "sha256:f8e333cdcd4a3a9f8697b2c24b9a1eea26025079e5dbfe56fa81c9bc06a9b420" },
+    { side: "SIDE B", track: "25", title: "Rooster", url: "sha256:47ad47f43b648ff9cbf52ebcdaf270ad15b3ac84bfe8970b738b5dfa0692fcf1" },
+    { side: "SIDE B", track: "26", title: "Freaking Out The Neighborhood", url: "sha256:8b2b5cd2e1a909e0b1d019c77c79e90d4fbc0cdf8cdd1fc990f722b4d3d42886" },
+    { side: "SIDE B", track: "27", title: "Holy", url: "sha256:803e84acca71eef2014fb23e0861700f7cdce3408ec89dcac9b09e083c98f191" },
+    { side: "SIDE B", track: "28", title: "Moonlight on the River", url: "sha256:af7ceace4e7cb19b57a7436c05508c33a0ea2170183a84fd1466234030ebda78" },
+    { side: "SIDE B", track: "29", title: "Chamber of Reflection", url: "sha256:f1de759e9f8acb9b2d1a2eb4bfc5222143a42ef9e13ca034f1ee2d7454c847b5" },
+    { side: "SIDE B", track: "30", title: "My Kind Of Woman", url: "sha256:8d224153eb29fefd2ed018838ad101b154a8f5aedffbd7ed8aa31dd9f9481f09" },
+    { side: "SIDE B", track: "31", title: "Bonus Track - No Other Heart", url: "sha256:6d7165493fde687324d6970d5189bc7ba1a8458ffcffbc0afc3d0795121c435f" },
+    { side: "SIDE B", track: "32", title: "Bonus Track - For the First Time", url: "sha256:4d0b3c926466477817f7207ac9f7b94558383bc478319b85c7838d79a8c0465a" }
+  ];
+
+  let currentIndex = 0;
+  const audio = document.getElementById("audio");
+  const vinyl = document.getElementById("vinyl");
+  const playBtn = document.getElementById("play-btn");
+  const progress = document.getElementById("progress");
+
+  function renderTracklist() {
+    const sideA = document.getElementById("side-a-tracks");
+    const sideB = document.getElementById("side-b-tracks");
+    sideA.innerHTML = ""; sideB.innerHTML = "";
+
+    playlist.forEach((item, index) => {
+      const html = `
+        <div class="track-item ${index === currentIndex ? 'active' : ''}" onclick="loadTrack(${index}, true)">
+          <span class="t-name">${item.track}. ${item.title}</span>
+          <a href="${item.url}" class="download-btn" download onclick="event.stopPropagation()">⬇ MP3</a>
+        </div>
+      `;
+      if (item.side === "SIDE A") sideA.innerHTML += html;
+      else sideB.innerHTML += html;
+    });
+  }
+
+  function loadTrack(index, autoPlay = false) {
+    currentIndex = index;
+    const track = playlist[index];
+    audio.src = track.url;
+    document.getElementById("display-title").innerText = `${track.track}. ${track.title}`;
+    document.getElementById("display-side").innerText = track.side;
+    renderTracklist();
+    
+    if (autoPlay) playAudio();
+  }
+
+  function playAudio() {
+    audio.play();
+    playBtn.innerText = "⏸";
+    vinyl.classList.add("playing");
+  }
+
+  function pauseAudio() {
+    audio.pause();
+    playBtn.innerText = "▶";
+    vinyl.classList.remove("playing");
+  }
+
+  function togglePlay() {
+    if (audio.paused) playAudio();
+    else pauseAudio();
+  }
+
+  function stopTrack() {
+    pauseAudio();
+    audio.currentTime = 0;
+  }
+
+  function prevTrack() {
+    currentIndex = (currentIndex - 1 + playlist.length) % playlist.length;
+    loadTrack(currentIndex, true);
+  }
+
+  function nextTrack() {
+    currentIndex = (currentIndex + 1) % playlist.length;
+    loadTrack(currentIndex, true);
+  }
+
+  audio.addEventListener("timeupdate", () => {
+    if (audio.duration) {
+      progress.value = (audio.currentTime / audio.duration) * 100;
+      document.getElementById("current-time").innerText = formatTime(audio.currentTime);
+      document.getElementById("total-time").innerText = formatTime(audio.duration);
+    }
+  });
+
+  progress.addEventListener("input", () => {
+    audio.currentTime = (progress.value / 100) * audio.duration;
+  });
+
+  document.getElementById("volume").addEventListener("input", (e) => {
+    audio.volume = e.target.value;
+  });
+
+  function toggleMute() {
+    audio.muted = !audio.muted;
+    document.getElementById("mute-btn").innerText = audio.muted ? "🔇" : "🔊";
+  }
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+  }
+
+  audio.addEventListener("ended", nextTrack);
+
+  loadTrack(0, false);
+</script>
+</body>
+</html>
