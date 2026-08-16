@@ -6,18 +6,24 @@
   <title>Mac DeMarco - Live Special Edition</title>
   <style>
     :root {
-      --bg-color: #121212;
-      --card-bg: #1e1e1e;
-      --accent: #e52b2b; /* Colore rosso per i dettagli */
+      /* Sfondo scuro semi-trasparente per i riquadri */
+      --card-bg: rgba(30, 30, 30, 0.65); 
+      --accent: #e52b2b;
       --text: #ffffff;
-      --subtext: #aaaaaa;
-      --vinyl-center: #2b5be5; /* Colore blu per il centro del vinile */
+      --subtext: #dddddd; /* Reso leggermente più chiaro per contrastare lo sfondo */
+      --vinyl-center: #2b5be5;
     }
 
     body {
       margin: 0;
       padding: 20px 15px;
-      background-color: var(--bg-color);
+      /* --- INSERISCI QUI IL LINK DELLA TUA FOTO --- */
+      background-image: url('LINK_DELLA_TUA_FOTO_QUI');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Mantiene la foto ferma mentre scorri la pagina */
+      background-color: #121212; /* Colore di sicurezza se la foto non carica */
+      
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       display: flex;
@@ -30,9 +36,12 @@
       width: 100%;
     }
 
-    /* Player / Turntable Style */
+    /* Player / Turntable Style con effetto VETRO */
     .turntable {
       background: var(--card-bg);
+      backdrop-filter: blur(10px); /* Sfoca leggermente l'immagine dietro */
+      -webkit-backdrop-filter: blur(10px); /* Per Safari */
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Bordino leggero per staccarlo dallo sfondo */
       border-radius: 24px;
       padding: 25px 20px;
       text-align: center;
@@ -51,8 +60,10 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      background: radial-gradient(circle, #333 18%, #111 18%, #111 24%, #222 25%, #111 60%, #000 100%);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      background: 
+        conic-gradient(rgba(255,255,255,0) 10%, rgba(255,255,255,0.08) 25%, rgba(255,255,255,0) 40%, rgba(255,255,255,0) 60%, rgba(255,255,255,0.08) 75%, rgba(255,255,255,0) 90%),
+        radial-gradient(circle, #333 18%, #111 18%, #111 24%, #222 25%, #111 60%, #000 100%);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.8);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -64,17 +75,15 @@
       animation-play-state: running;
     }
 
-    /* Vinile blu e senza scritte */
     .record-label {
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: var(--vinyl-center);
+      background: linear-gradient(135deg, #5a83ff 0%, var(--vinyl-center) 50%, #102a7a 100%);
       border: 3px solid #000;
       position: relative;
     }
 
-    /* Buco nero al centro */
     .record-label::after {
       content: "";
       position: absolute;
@@ -101,6 +110,7 @@
       font-weight: bold;
       letter-spacing: 2px;
       margin-bottom: 4px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Aiuta a leggere meglio sullo sfondo */
     }
 
     .track-title {
@@ -110,6 +120,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
 
     /* Progress & Time */
@@ -127,7 +138,7 @@
       -webkit-appearance: none;
       height: 6px;
       border-radius: 3px;
-      background: #444;
+      background: rgba(255, 255, 255, 0.2);
       outline: none;
     }
 
@@ -138,6 +149,7 @@
       border-radius: 50%;
       background: var(--accent);
       cursor: pointer;
+      box-shadow: 0 0 5px rgba(0,0,0,0.5);
     }
 
     /* Controls */
@@ -157,6 +169,7 @@
       cursor: pointer;
       padding: 10px;
       transition: transform 0.1s;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
 
     .btn:active { transform: scale(0.9); }
@@ -171,6 +184,7 @@
       align-items: center;
       justify-content: center;
       font-size: 22px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
     }
 
     .volume-container {
@@ -187,7 +201,7 @@
       -webkit-appearance: none;
       height: 4px;
       border-radius: 2px;
-      background: #444;
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .volume-slider::-webkit-slider-thumb {
@@ -198,20 +212,25 @@
       background: var(--text);
     }
 
-    /* Tracklist */
+    /* Tracklist con effetto VETRO */
     .tracklist {
       background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 20px;
       padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     }
 
     .side-header {
       color: var(--accent);
       font-size: 14px;
       letter-spacing: 1.5px;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
       padding-bottom: 5px;
       margin: 15px 0 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     }
 
     .side-header:first-child { margin-top: 0; }
@@ -228,7 +247,7 @@
     }
 
     .track-item:hover, .track-item.active {
-      background: #2a2a2a;
+      background: rgba(255, 255, 255, 0.15); /* Trasparenza all'hover */
     }
 
     .track-item.active .t-name {
@@ -241,15 +260,23 @@
       text-decoration: none;
       font-size: 12px;
       padding: 4px 8px;
-      border: 1px solid #444;
+      border: 1px solid rgba(255,255,255,0.3);
       border-radius: 4px;
+      transition: all 0.2s;
+    }
+    
+    .download-btn:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
     }
 
     .zip-download {
       display: block;
       width: 100%;
       text-align: center;
-      background: #2a2a2a;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: var(--text);
       text-decoration: none;
       padding: 12px;
@@ -257,6 +284,11 @@
       margin-top: 20px;
       font-weight: 500;
       box-sizing: border-box;
+      transition: background 0.2s;
+    }
+
+    .zip-download:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
   </style>
 </head>
@@ -266,7 +298,6 @@
   <div class="turntable">
     <div class="record-container">
       <div class="record" id="vinyl">
-        <!-- Vinile senza scritte con buco nero creato via CSS -->
         <div class="record-label"></div>
       </div>
     </div>
@@ -309,11 +340,9 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-  // Link corretto che punta direttamente agli Asset della Release v1.0
   const baseUrl = "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/";
 
   const playlist = [
-    // SIDE A
     { side: "SIDE A", track: "01", title: "Intro", file: "01.-.Intro.mp3" },
     { side: "SIDE A", track: "02", title: "Shining", file: "02.-.Shining.mp3" },
     { side: "SIDE A", track: "03", title: "For The First Time", file: "03.-.For.The.First.Time.mp3" },
@@ -331,7 +360,6 @@
     { side: "SIDE A", track: "15", title: "Home", file: "15.-.Home.mp3" },
     { side: "SIDE A", track: "16", title: "No Other Heart", file: "16.-.No.Other.Heart.mp3" },
 
-    // SIDE B
     { side: "SIDE B", track: "17", title: "20210218 Round Here", file: "17.-.20210218.Round.Here.mp3" },
     { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", file: "18.-.Rock.And.Roll.Night.Club.mp3" },
     { side: "SIDE B", track: "19", title: "Heart To Heart", file: "19.-.Heart.To.Heart.mp3" },
