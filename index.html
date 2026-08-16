@@ -296,48 +296,53 @@
   </div>
 </div>
 
-<audio id="audio"></audio>
+<audio id="audio" preload="metadata"></audio>
 
 <script>
-  const baseUrl = "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/";
+  // Utilizziamo jsDelivr per servire direttamente i file dal tuo repository GitHub
+  const baseUrl = "https://cdn.jsdelivr.net/gh/bryanbarbieri09-dev/MacDeMarco-Live@main/";
 
   const playlist = [
     // SIDE A
-    { side: "SIDE A", track: "01", title: "Intro", url: baseUrl + "01.-.Intro.mp3" },
-    { side: "SIDE A", track: "02", title: "Shining", url: baseUrl + "02.-.Shining.mp3" },
-    { side: "SIDE A", track: "03", title: "For The First Time", url: baseUrl + "03.-.For.The.First.Time.mp3" },
-    { side: "SIDE A", track: "04", title: "Sweeter", url: baseUrl + "04.-.Sweeter.mp3" },
-    { side: "SIDE A", track: "05", title: "On The Level", url: baseUrl + "05.-.On.The.Level.mp3" },
-    { side: "SIDE A", track: "06", title: "Phantom", url: baseUrl + "06.-.Phantom.mp3" },
-    { side: "SIDE A", track: "07", title: "Salad Days", url: baseUrl + "07.-.Salad.Days.mp3" },
-    { side: "SIDE A", track: "08", title: "I Like Her", url: baseUrl + "08.-.I.Like.Her.mp3" },
-    { side: "SIDE A", track: "09", title: "Rock And Roll", url: baseUrl + "09.-.Rock.And.Roll.mp3" },
-    { side: "SIDE A", track: "10", title: "Terror", url: baseUrl + "10.-.Terror.mp3" },
-    { side: "SIDE A", track: "11", title: "Finally Alone", url: baseUrl + "11.-.Finally.Alone.mp3" },
-    { side: "SIDE A", track: "12", title: "All Of Our Yesterdays", url: baseUrl + "12.-.All.Of.Our.Yesterdays.mp3" },
-    { side: "SIDE A", track: "13", title: "Still Beating", url: baseUrl + "13.-.Still.Beating.mp3" },
-    { side: "SIDE A", track: "14", title: "Passing Out Pieces", url: baseUrl + "14.-.Passing.Out.Pieces.mp3" },
-    { side: "SIDE A", track: "15", title: "Home", url: baseUrl + "15.-.Home.mp3" },
-    { side: "SIDE A", track: "16", title: "No Other Heart", url: baseUrl + "16.-.No.Other.Heart.mp3" },
+    { side: "SIDE A", track: "01", title: "Intro", file: "01.-.Intro.mp3" },
+    { side: "SIDE A", track: "02", title: "Shining", file: "02.-.Shining.mp3" },
+    { side: "SIDE A", track: "03", title: "For The First Time", file: "03.-.For.The.First.Time.mp3" },
+    { side: "SIDE A", track: "04", title: "Sweeter", file: "04.-.Sweeter.mp3" },
+    { side: "SIDE A", track: "05", title: "On The Level", file: "05.-.On.The.Level.mp3" },
+    { side: "SIDE A", track: "06", title: "Phantom", file: "06.-.Phantom.mp3" },
+    { side: "SIDE A", track: "07", title: "Salad Days", file: "07.-.Salad.Days.mp3" },
+    { side: "SIDE A", track: "08", title: "I Like Her", file: "08.-.I.Like.Her.mp3" },
+    { side: "SIDE A", track: "09", title: "Rock And Roll", file: "09.-.Rock.And.Roll.mp3" },
+    { side: "SIDE A", track: "10", title: "Terror", file: "10.-.Terror.mp3" },
+    { side: "SIDE A", track: "11", title: "Finally Alone", file: "11.-.Finally.Alone.mp3" },
+    { side: "SIDE A", track: "12", title: "All Of Our Yesterdays", file: "12.-.All.Of.Our.Yesterdays.mp3" },
+    { side: "SIDE A", track: "13", title: "Still Beating", file: "13.-.Still.Beating.mp3" },
+    { side: "SIDE A", track: "14", title: "Passing Out Pieces", file: "14.-.Passing.Out.Pieces.mp3" },
+    { side: "SIDE A", track: "15", title: "Home", file: "15.-.Home.mp3" },
+    { side: "SIDE A", track: "16", title: "No Other Heart", file: "16.-.No.Other.Heart.mp3" },
 
     // SIDE B
-    { side: "SIDE B", track: "17", title: "20210218 Round Here", url: baseUrl + "17.-.20210218.Round.Here.mp3" },
-    { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", url: baseUrl + "18.-.Rock.And.Roll.Night.Club.mp3" },
-    { side: "SIDE B", track: "19", title: "Heart To Heart", url: baseUrl + "19.-.Heart.To.Heart.mp3" },
-    { side: "SIDE B", track: "20", title: "This Old Dog", url: baseUrl + "20.-.This.Old.Dog.mp3" },
-    { side: "SIDE B", track: "21", title: "Ode to Viceroy", url: baseUrl + "21.-.Ode.to.Viceroy.mp3" },
-    { side: "SIDE B", track: "22", title: "20200820 Turn My TV On", url: baseUrl + "22.-.20200820.Turn.My.TV.On.mp3" },
-    { side: "SIDE B", track: "23", title: "One More Love Song", url: baseUrl + "23.-.One.More.Love.Song.mp3" },
-    { side: "SIDE B", track: "24", title: "Another One", url: baseUrl + "24.-.Another.One.mp3" },
-    { side: "SIDE B", track: "25", title: "Rooster", url: baseUrl + "25.-.Rooster.mp3" },
-    { side: "SIDE B", track: "26", title: "Freaking Out The Neighborhood", url: baseUrl + "26.-.Freaking.Out.The.Neighborhood.mp3" },
-    { side: "SIDE B", track: "27", title: "Holy", url: baseUrl + "27.-.Holy.mp3" },
-    { side: "SIDE B", track: "28", title: "Moonlight on the River", url: baseUrl + "28.-.Moonlight.on.the.River.mp3" },
-    { side: "SIDE B", track: "29", title: "Chamber of Reflection", url: baseUrl + "29.-.Chamber.of.Reflection.mp3" },
-    { side: "SIDE B", track: "30", title: "My Kind Of Woman", url: baseUrl + "30.-.My.Kind.Of.Woman.mp3" },
-    { side: "SIDE B", track: "31", title: "Bonus Track - No Other Heart", url: baseUrl + "31.-.Bonus.Track.-.No.Other.Heart.mp3" },
-    { side: "SIDE B", track: "32", title: "Bonus Track - For the First Time", url: baseUrl + "32.-.Bonus.Track.-.For.the.First.Time.mp3" }
+    { side: "SIDE B", track: "17", title: "20210218 Round Here", file: "17.-.20210218.Round.Here.mp3" },
+    { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", file: "18.-.Rock.And.Roll.Night.Club.mp3" },
+    { side: "SIDE B", track: "19", title: "Heart To Heart", file: "19.-.Heart.To.Heart.mp3" },
+    { side: "SIDE B", track: "20", title: "This Old Dog", file: "20.-.This.Old.Dog.mp3" },
+    { side: "SIDE B", track: "21", title: "Ode to Viceroy", file: "21.-.Ode.to.Viceroy.mp3" },
+    { side: "SIDE B", track: "22", title: "20200820 Turn My TV On", file: "22.-.20200820.Turn.My.TV.On.mp3" },
+    { side: "SIDE B", track: "23", title: "One More Love Song", file: "23.-.One.More.Love.Song.mp3" },
+    { side: "SIDE B", track: "24", title: "Another One", file: "24.-.Another.One.mp3" },
+    { side: "SIDE B", track: "25", title: "Rooster", file: "25.-.Rooster.mp3" },
+    { side: "SIDE B", track: "26", title: "Freaking Out The Neighborhood", file: "26.-.Freaking.Out.The.Neighborhood.mp3" },
+    { side: "SIDE B", track: "27", title: "Holy", file: "27.-.Holy.mp3" },
+    { side: "SIDE B", track: "28", title: "Moonlight on the River", file: "28.-.Moonlight.on.the.River.mp3" },
+    { side: "SIDE B", track: "29", title: "Chamber of Reflection", file: "29.-.Chamber.of.Reflection.mp3" },
+    { side: "SIDE B", track: "30", title: "My Kind Of Woman", file: "30.-.My.Kind.Of.Woman.mp3" },
+    { side: "SIDE B", track: "31", title: "Bonus Track - No Other Heart", file: "31.-.Bonus.Track.-.No.Other.Heart.mp3" },
+    { side: "SIDE B", track: "32", title: "Bonus Track - For the First Time", file: "32.-.Bonus.Track.-.For.the.First.Time.mp3" }
   ];
+
+  playlist.forEach(item => {
+    item.url = baseUrl + item.file;
+  });
 
   let currentIndex = 0;
   const audio = document.getElementById("audio");
@@ -374,9 +379,10 @@
   }
 
   function playAudio() {
-    audio.play();
-    playBtn.innerText = "⏸";
-    vinyl.classList.add("playing");
+    audio.play().then(() => {
+      playBtn.innerText = "⏸";
+      vinyl.classList.add("playing");
+    }).catch(err => console.log("Errore riproduzione:", err));
   }
 
   function pauseAudio() {
@@ -406,7 +412,7 @@
   }
 
   audio.addEventListener("timeupdate", () => {
-    if (audio.duration) {
+    if (audio.duration && !isNaN(audio.duration)) {
       progress.value = (audio.currentTime / audio.duration) * 100;
       document.getElementById("current-time").innerText = formatTime(audio.currentTime);
       document.getElementById("total-time").innerText = formatTime(audio.duration);
@@ -414,7 +420,9 @@
   });
 
   progress.addEventListener("input", () => {
-    audio.currentTime = (progress.value / 100) * audio.duration;
+    if (audio.duration && !isNaN(audio.duration)) {
+      audio.currentTime = (progress.value / 100) * audio.duration;
+    }
   });
 
   document.getElementById("volume").addEventListener("input", (e) => {
@@ -427,6 +435,7 @@
   }
 
   function formatTime(sec) {
+    if (isNaN(sec)) return "0:00";
     const m = Math.floor(sec / 60);
     const s = Math.floor(sec % 60);
     return `${m}:${s < 10 ? '0' : ''}${s}`;
