@@ -8,10 +8,9 @@
     :root {
       --bg-color: #121212;
       --card-bg: #1e1e1e;
-      --accent: #e52b2b; /* ROSSO per le scritte e i dettagli */
+      --accent: #e5a93c;
       --text: #ffffff;
       --subtext: #aaaaaa;
-      --vinyl-center: #2b5be5; /* BLU per il centro del vinile */
     }
 
     body {
@@ -64,27 +63,19 @@
       animation-play-state: running;
     }
 
-    /* MODIFICA: Centro del vinile blu senza scritte */
     .record-label {
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: var(--vinyl-center);
+      background: var(--accent);
       border: 3px solid #000;
-      position: relative;
-    }
-
-    /* MODIFICA: Il buco nero al centro del vinile */
-    .record-label::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 12px;
-      height: 12px;
-      background: #000;
-      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-weight: bold;
+      font-size: 11px;
+      text-align: center;
     }
 
     @keyframes spin {
@@ -166,7 +157,7 @@
       height: 55px;
       border-radius: 50%;
       background: var(--accent);
-      color: #fff; /* Reso bianco per leggibilità sul rosso */
+      color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -266,8 +257,7 @@
   <div class="turntable">
     <div class="record-container">
       <div class="record" id="vinyl">
-        <!-- MODIFICA: Scritta rimossa da qui -->
-        <div class="record-label"></div>
+        <div class="record-label">MAC LIVE</div>
       </div>
     </div>
 
