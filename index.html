@@ -7,7 +7,7 @@
   <style>
     :root {
       --bg-color: #121212;
-      --card-bg: rgba(30, 30, 30, 0.85); /* Sfondo semitrasparente */
+      --card-bg: rgba(30, 30, 30, 0.85);
       --accent: #e52b2b; /* Rosso */
       --text: #ffffff;
       --subtext: #aaaaaa;
@@ -18,8 +18,8 @@
       margin: 0;
       padding: 20px 15px;
       background-color: var(--bg-color);
-      /* Immagine di sfondo Mac DeMarco presa DIRETTAMENTE da GitHub con overlay scuro */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('https://raw.githubusercontent.com/bryanbarbieri09-dev/MacDeMarco-Live/main/MacDeMarco.jpg');
+      /* Immagine di sfondo locale con velatura scura */
+      background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('MacDeMarco.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -335,6 +335,7 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
+  // Ripristinato l'URL base funzionante che avevamo all'inizio
   const baseUrl = "https://cdn.jsdelivr.net/gh/bryanbarbieri09-dev/MacDeMarco-Live@main/";
 
   const playlist = [
