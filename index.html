@@ -8,9 +8,10 @@
     :root {
       --bg-color: #121212;
       --card-bg: #1e1e1e;
-      --accent: #e5a93c;
+      --accent: #e52b2b; /* Colore rosso per i dettagli */
       --text: #ffffff;
       --subtext: #aaaaaa;
+      --vinyl-center: #2b5be5; /* Colore blu per il centro del vinile */
     }
 
     body {
@@ -63,19 +64,27 @@
       animation-play-state: running;
     }
 
+    /* Vinile blu e senza scritte */
     .record-label {
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: var(--accent);
+      background: var(--vinyl-center);
       border: 3px solid #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #000;
-      font-weight: bold;
-      font-size: 11px;
-      text-align: center;
+      position: relative;
+    }
+
+    /* Buco nero al centro */
+    .record-label::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      background: #000;
+      border-radius: 50%;
     }
 
     @keyframes spin {
@@ -157,7 +166,7 @@
       height: 55px;
       border-radius: 50%;
       background: var(--accent);
-      color: #000;
+      color: #ffffff;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -257,7 +266,8 @@
   <div class="turntable">
     <div class="record-container">
       <div class="record" id="vinyl">
-        <div class="record-label">MAC LIVE</div>
+        <!-- Vinile senza scritte con buco nero creato via CSS -->
+        <div class="record-label"></div>
       </div>
     </div>
 
@@ -299,8 +309,8 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-  // UTILIZZIAMO DIRETTAMENTE GITHUB PAGES, NESSUN BLOCCO POSSIBILE DA PARTE DI JSDELIVR
-  const baseUrl = "https://bryanbarbieri09-dev.github.io/MacDeMarco-Live/";
+  // Link corretto che punta direttamente agli Asset della Release v1.0
+  const baseUrl = "https://github.com/bryanbarbieri09-dev/MacDeMarco-Live/releases/download/v1.0/";
 
   const playlist = [
     // SIDE A
