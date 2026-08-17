@@ -110,7 +110,7 @@
       font-weight: bold;
       letter-spacing: 2px;
       margin-bottom: 4px;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.8); /* Aumentata l'ombra per leggere meglio sul trasparente */
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8); 
     }
 
     .track-title {
@@ -295,6 +295,21 @@
     .zip-download:hover {
       background: rgba(255, 255, 255, 0.3);
     }
+
+    /* Stile per i crediti a fondo pagina */
+    .footer-credits {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 13px;
+      color: var(--subtext);
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+      letter-spacing: 0.5px;
+      opacity: 0.8;
+    }
+    
+    .footer-credits strong {
+      color: var(--accent);
+    }
   </style>
 </head>
 <body>
@@ -340,6 +355,11 @@
 
     <a href="https://drive.google.com/drive/folders/1keV0mdtPuHWr4lfId9uJqmzdjN7uXX_3?usp=sharing" target="_blank" class="zip-download">📦 Scarica Album Completo su Google Drive</a>
   </div>
+  
+  <!-- Crediti aggiunti qui -->
+  <div class="footer-credits">
+    Realizzato da <strong>Bryan Barbieri</strong>
+  </div>
 </div>
 
 <audio id="audio" preload="metadata"></audio>
@@ -363,8 +383,9 @@
     { side: "SIDE A", track: "13", title: "Still Beating", file: "13.-.Still.Beating.mp3" },
     { side: "SIDE A", track: "14", title: "Passing Out Pieces", file: "14.-.Passing.Out.Pieces.mp3" },
     { side: "SIDE A", track: "15", title: "Home", file: "15.-.Home.mp3" },
-    { side: "SIDE A", track: "16", title: "No Other Heart", file: "16.-.No.Other.Heart.mp3" },
 
+    /* Traccia 16 spostata in SIDE B */
+    { side: "SIDE B", track: "16", title: "No Other Heart", file: "16.-.No.Other.Heart.mp3" },
     { side: "SIDE B", track: "17", title: "20210218 Round Here", file: "17.-.20210218.Round.Here.mp3" },
     { side: "SIDE B", track: "18", title: "Rock And Roll Night Club", file: "18.-.Rock.And.Roll.Night.Club.mp3" },
     { side: "SIDE B", track: "19", title: "Heart To Heart", file: "19.-.Heart.To.Heart.mp3" },
